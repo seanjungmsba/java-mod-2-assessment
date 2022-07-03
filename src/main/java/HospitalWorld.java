@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Map;
 
 public class HospitalWorld {
 
@@ -41,10 +42,10 @@ public class HospitalWorld {
             System.out.print("Enter the NAME of doctor: ");
             String doctorName = getValidStringInput(sc);
 
-            System.out.print("Enter the SPECIALTY of doctor: ");
-            String doctorSpecialty = getValidStringInput(sc);
-
-            hospital.addDoctor(doctorName, doctorSpecialty);
+            System.out.print("Enter the SPECIALTY of doctor from the following: ");
+            hospital.returnSpecialty();
+            int doctorSpecialty = getValidIntegerInput(sc);
+            hospital.addDoctor(doctorName);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,7 +63,7 @@ public class HospitalWorld {
             System.out.print("Enter the NAME of patient: ");
             String patientName = getValidStringInput(sc);
 
-            System.out.print("Enter the SPECIALTY which the patient needs: ");
+            System.out.print("Enter the SYMPTOM which the patient experiences: ");
             String patientSpecialty = getValidStringInput(sc);
 
             hospital.addPatient(patientName, patientSpecialty);

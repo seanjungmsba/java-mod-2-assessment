@@ -1,37 +1,37 @@
 public class Patient {
 
     private String name;
-    private String needSpecialty;
+    private Symptom symptom;
 
     public Patient() {
         this.name = null;
-        this.needSpecialty = null;
+        this.symptom = null;
     }
 
-    public Patient(String name, String needSpecialty) {
+    public Patient(String name, Symptom symptom) {
         this.name = name;
-        this.needSpecialty = needSpecialty;
+        this.symptom = symptom;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getNeedSpecialty() {
-        return needSpecialty;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setNeedSpecialty(String needSpecialty) {
-        this.needSpecialty = needSpecialty;
+    public Symptom getSymptom() {
+        return this.symptom;
+    }
+
+    public void setSymptom(Symptom symptom) {
+        this.symptom = symptom;
     }
 
     @Override
     public String toString() {
-        return "Patient: [Name = " + name + ", Need specialty = " + needSpecialty + "]";
+        return "Patient: [name: " + name + ", symptom: " + symptom + "]";
     }
 
 }

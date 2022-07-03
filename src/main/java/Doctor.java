@@ -1,16 +1,16 @@
 public class Doctor {
-    
+
     private String name;
-    private String provideSpecialty;
+    private Specialty specialty;
 
     public Doctor() {
         this.name = null;
-        this.provideSpecialty = null;
+        this.specialty = null;
     }
 
-    public Doctor(String name, String provideSpecialty) {
+    public Doctor(String name, Specialty specialty) {
         this.name = name;
-        this.provideSpecialty = provideSpecialty;
+        this.specialty = specialty;
     }
 
     public String getDoctorName() {
@@ -21,17 +21,17 @@ public class Doctor {
         this.name = name;
     }
 
-    public String getDoctorSpecialty() {
-        return this.provideSpecialty;
+    public Specialty getSpecialty() {
+        return this.specialty;
     }
 
-    public void setDoctorSpecialty(String provideSpecialty) {
-        this.provideSpecialty = provideSpecialty;
+    public void setSpecialty(Specialty specialty) {
+        this.specialty = specialty;
     }
 
     @Override
     public String toString() {
-        return "Doctor: [Name = " + name + ", Specialty = " + provideSpecialty  + "]";
+        return "Doctor: [Name = " + name + ", Specialty = " + specialty + "]";
     }
- 
+
 }
