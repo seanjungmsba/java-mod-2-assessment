@@ -53,7 +53,7 @@ Start by creating a runnable class:
 
 ```java
 public class HospitalWorld {
-    public static void main(String[] args) {
+    public static void HospitalWorld(String[] args) {
         System.out.println("Running...");
     }
 }

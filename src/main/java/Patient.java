@@ -31,7 +31,7 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "Patient: [name: " + name + ", symptom: " + symptom + "]";
+        return "Patient: [Name: " + name + ", Symptom: " + symptom + "]";
     }
 
 }

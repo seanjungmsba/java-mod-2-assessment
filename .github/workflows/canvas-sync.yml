@@ -2,7 +2,7 @@ name: Sync with Canvas
 
 on:
   push:
-    branches: [master, main]
+    branches: [master, HospitalWorld]
     paths:
       - "README.md"
 

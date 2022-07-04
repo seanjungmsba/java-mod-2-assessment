@@ -31,7 +31,7 @@ public class Doctor {
 
     @Override
     public String toString() {
-        return "Doctor: [Name = " + name + ", Specialty = " + specialty + "]";
+        return "Doctor: [Name: " + name + ", Specialty: " + specialty + "]";
     }
 
 }

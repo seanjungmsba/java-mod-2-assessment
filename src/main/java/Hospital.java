@@ -10,9 +10,9 @@ public class Hospital {
     private String hospitalName;
     private List<Doctor> doctors;
     private List<Patient> patients;
-    private Map<Symptom, Specialty> symptomToSpecialty;
-    private Map<Doctor, List<Patient>> patientMap;
-    private Map<Specialty, List<Doctor>> doctorMap;
+    private Map<Symptom, Specialty> symptomToSpecialty; // matching symptom and specialty
+    private Map<Doctor, List<Patient>> patientMap; // matching doctors with patients
+    private Map<Specialty, List<Doctor>> doctorMap; // return doctors based on speciality
 
     public Hospital(String hospitalName) {
         this.hospitalName = hospitalName;
@@ -28,42 +28,12 @@ public class Hospital {
         doctorMap = new HashMap<>();
     }
 
-    public void addDoctor(Doctor doctor) {
-
-        Specialty specialty = doctor.getSpecialty();
-        this.doctors.add(doctor);
-        List<Doctor> doctorList = new LinkedList<Doctor>();
-        doctorList.add(doctor);
-        doctorMap.put(specialty, doctorList);
-
+    public List<Doctor> getDoctorNames() {
+        return doctors;
     }
 
-    public String[] getDoctors() {
-        String[] doctorArray = new String[doctors.size()];
-        int idx = 0;
-        for (Doctor doctor : doctors) {
-            doctorArray[idx] = doctor.toString();
-            idx++;
-        }
-        return doctorArray;
-    }
-
-    public void addPatient(Patient patient) {
-
-        this.patients.add(patient);
-        Specialty specialty = findSpecialty(patient.getSymptom()); // find specialty based on patient symptom
-        Doctor doctor = findDoctor(specialty); // find doctor based on specialty
-
-        if (patientMap.containsKey(doctor)) {
-            ;
-            List<Patient> patientList = patientMap.get(doctor);
-            patientList.add(patient);
-        }
-
-        List<Patient> newPatientList = new LinkedList<Patient>();
-        newPatientList.add(patient);
-        patientMap.put(doctor, newPatientList);
-
+    public List<Patient> getPatientNames() {
+        return patients;
     }
 
     public void printAllDoctors() {
@@ -78,13 +48,32 @@ public class Hospital {
         }
     }
 
-    public Specialty findSpecialty(Symptom symptom) {
-        return symptomToSpecialty.get(symptom);
+    public void addDoctor(Doctor doctor) {
+        Specialty specialty = doctor.getSpecialty();
+        this.doctors.add(doctor);
+        List<Doctor> doctorList = new LinkedList<Doctor>();
+        doctorList.add(doctor);
+        doctorMap.put(specialty, doctorList);
     }
 
-    // Tester - to remove later
-    public List<Doctor> getDoctorList(Specialty specialty) {
-        return doctorMap.get(specialty);
+    public void addPatient(Patient patient) {
+        this.patients.add(patient);
+        Specialty specialty = findSpecialty(patient.getSymptom()); // find specialty based on patient symptom
+        Doctor doctor = findDoctor(specialty); // find doctor based on specialty
+
+        if (patientMap.containsKey(doctor)) { // handling a doctor who needs to take care more than one patient
+            List<Patient> patientList = patientMap.get(doctor);
+            patientList.add(patient);
+            if (doctor != null) { // if the key is not null, add it to patientMap
+                patientMap.put(doctor, patientList);
+            }
+        } else { // handling a doctor who needs to take care of new patient
+            List<Patient> newPatientList = new LinkedList<Patient>();
+            newPatientList.add(patient);
+            if (doctor != null) { // if the key is not null, add it to patientMap
+                patientMap.put(doctor, newPatientList);
+            }
+        }
     }
 
     public Doctor findDoctor(Specialty specialty) {
@@ -96,6 +85,10 @@ public class Hospital {
             return doctor;
         }
         return null;
+    }
+
+    public Specialty findSpecialty(Symptom symptom) {
+        return symptomToSpecialty.get(symptom);
     }
 
     public void returnSpecialty() {
@@ -110,18 +103,6 @@ public class Hospital {
         }
     }
 
-    public String getHospitalName() {
-        return hospitalName;
-    }
-
-    public List<Patient> getPatientNames() {
-        return patients;
-    }
-
-    public List<Doctor> getDoctorNames() {
-        return doctors;
-    }
-
     public Map<Symptom, Specialty> getSymptomToSpecialty() {
         return symptomToSpecialty;
     }
@@ -134,6 +115,10 @@ public class Hospital {
         return doctorMap;
     }
 
+    public String getHospitalName() {
+        return hospitalName;
+    }
+
     public static boolean isEmpty(Collection<?> collection) {
         return collection == null || collection.isEmpty();
     }
@@ -144,12 +129,11 @@ public class Hospital {
     }
 
     public void printHospitalInfo() {
-
         System.out.println();
         System.out.println("=========== PRINTING HOSPITAL INFO ===========");
         System.out.println("Hosptial Name: " + getHospitalName());
-        System.out.println("Available Specialties: " + Arrays.asList(Specialty.values()));
-        System.out.println("Available Symptoms: " + Arrays.asList(Symptom.values()));
+        System.out.println("Available Specialties: \n" + Arrays.asList(Specialty.values()));
+        System.out.println("Available Symptoms: \n" + Arrays.asList(Symptom.values()));
         System.out.println("---------------------------");
         System.out.println("Doctors in the hospital: ");
         System.out.println(getDoctorNames());
@@ -157,9 +141,8 @@ public class Hospital {
         System.out.println("Patients in the hospital: ");
         System.out.println(getPatientNames());
         System.out.println("---------------------------");
-        System.out.println("Matching patient(s) with doctor(s) based on the symptom and specialty...");
+        System.out.println("Matching patient(s) with doctor(s) based on the symptom and specialty:");
         System.out.println(patientMap);
-
     }
 
 }

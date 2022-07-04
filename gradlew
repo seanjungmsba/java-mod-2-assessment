@@ -55,7 +55,7 @@
 #       Darwin, MinGW, and NonStop.
 #
 #   (3) This script is generated from the Groovy template
-#       https://github.com/gradle/gradle/blob/master/subprojects/plugins/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt
+#       https://github.com/gradle/gradle/blob/master/subprojects/plugins/src/HospitalWorld/resources/org/gradle/api/internal/plugins/unixStartScript.txt
 #       within the Gradle project.
 #
 #       You can find Gradle at https://github.com/gradle/gradle/.
@@ -156,7 +156,7 @@ fi
 
 # Collect all arguments for the java command, stacking in reverse order:
 #   * args from the command line
-#   * the main class name
+#   * the HospitalWorld class name
 #   * -classpath
 #   * -D...appname settings
 #   * --module-path (only if needed)
@@ -202,7 +202,7 @@ fi
 set -- \
         "-Dorg.gradle.appname=$APP_BASE_NAME" \
         -classpath "$CLASSPATH" \
-        org.gradle.wrapper.GradleWrapperMain \
+        org.gradle.wrapper.GradleWrapperHospitalWorld \
         "$@"
 
 # Use "xargs" to parse quoted args.
@@ -217,7 +217,7 @@ set -- \
 # but POSIX shell has neither arrays nor command substitution, so instead we
 # post-process each arg (as a line of input to sed) to backslash-escape any
 # character that might be a shell metacharacter, then use eval to reverse
-# that process (while maintaining the separation between arguments), and wrap
+# that process (while HospitalWorldtaining the separation between arguments), and wrap
 # the whole thing up as a single "set" statement.
 #
 # This will of course break if any of these variables contains a newline or
